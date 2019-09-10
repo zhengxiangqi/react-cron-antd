@@ -2,7 +2,7 @@
     <h1>ReactCron</h1>
     <div>基于React及Antd的cron时间表达式生成器</div>
     <br/>
-    <img width=700 src="./snapshot.png" alt="效果图" style="box-shadow: 0px 0px 10px #ccc;" />
+    <img width=700 src="./snapshot.png" alt="效果图" />
 </div>
 
 
