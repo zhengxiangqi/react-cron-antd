@@ -13,13 +13,26 @@
 - 🎉 可结合此组件与Antd的下拉及输入组件封装成下拉输入框
 
 
-### 案例
+### 使用
+```jsx
+import React from 'react';
+import Cron from './Cron';
+
+class Page extends React.Component {
+    render() {
+        return <Cron value="* * * * * ? *" onOk={(value) => {console.log('cron:', value);}} />;
+    }
+}
+```
+
+
+### 扩展
 封装一个用于表单组件的CronInput。
 
 ```jsx
 import React, { PureComponent } from 'react';
 import { Dropdown, Input } from 'antd';
-import Cron from '@/components/Cron';
+import Cron from './Cron';
 
 class CronInput extends PureComponent {
     onOk = (value) => {
