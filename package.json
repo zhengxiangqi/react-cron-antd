@@ -1,14 +1,14 @@
 {
-  "name": "react-cron",
+  "name": "react-cron-antd",
   "version": "1.0.0",
-  "description": "react cron",
+  "description": "react cron antd",
   "main": "Cron/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhengxiangqi/react-cron.git"
+    "url": "git+https://github.com/zhengxiangqi/react-cron-antd.git"
   },
   "keywords": [
     "react",
@@ -18,7 +18,7 @@
   "author": "zhengxiangqi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zhengxiangqi/react-cron/issues"
+    "url": "https://github.com/zhengxiangqi/react-cron-antd/issues"
   },
-  "homepage": "https://github.com/zhengxiangqi/react-cron#readme"
+  "homepage": "https://github.com/zhengxiangqi/react-cron-antd#readme"
 }
