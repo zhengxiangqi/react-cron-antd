@@ -16,13 +16,13 @@
 ### 使用
 ```jsx
 import React from 'react';
-import Cron from './Cron';
+import Cron from 'react-cron-antd';
 
-class Page extends React.Component {
-    render() {
-        return <Cron value="* * * * * ? *" onOk={(value) => {console.log('cron:', value);}} />;
-    }
+function Page() {
+    return <Cron value="* * * * * ? *" onOk={(value) => {console.log('cron:', value);}} />;
 }
+
+export default Page;
 ```
 
 
@@ -30,34 +30,31 @@ class Page extends React.Component {
 封装一个用于表单组件的CronInput。
 
 ```jsx
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { Dropdown, Input } from 'antd';
-import Cron from './Cron';
+import Cron from 'react-cron-antd';
 
-class CronInput extends PureComponent {
-    onOk = (value) => {
-        const { onChange } = this.props;
-        if (onChange) {
-            onChange(value);
-        }
-    };
+function CronInput(props) {
+    const { value, onChange } = props;
 
-    render() {
-        const { style, inputStyle, value, ...passThroughProps } = this.props;
-
-        return (
-            <Dropdown
-                trigger={['click']}
-                placement="bottomLeft"
-                overlay={<Cron onOk={this.onOk} value={value} style={style} />}
-            >
-                <Input.Search value={value} style={inputStyle} {...passThroughProps} />
-            </Dropdown>
-        );
-    }
+    return (
+        <Dropdown
+            trigger={['click']}
+            placement="bottomLeft"
+            overlay={<Cron onOk={onChange} value={value} />}
+        >
+            <Input.Search value={value} />
+        </Dropdown>
+    );
 }
+
 export default CronInput;
 ```
+
+
+### 更新日志
+- [点击查看更新日志](./CHANGELOG.md)
+
 
 ### LICENSE
 MIT
