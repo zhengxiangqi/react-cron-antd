@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface IProps {
     /**
      * Cron表达式，用来解析到UI
@@ -13,6 +11,10 @@ interface IProps {
      * 底部样式
      */
     footerStyle?: React.CSSProperties;
+    /**
+     * 底部栏渲染函数，用于自定义按钮
+     */
+    footerRenderer?: (onReset: () => void, onGenerate: () => void) => void;
     /**
      * 点击生成按钮时调用该回调
      */

@@ -3,13 +3,13 @@ import { InputNumber } from 'antd';
 
 function InputFromTo(props) {
     const { disabled, value, onChange } = props;
-    let from = 0;
-    let to = 0;
+    let from = 1;
+    let to = 1;
     if (!disabled) {
         [from, to] = value.split('-').map((v) => parseInt(v, 10));
     }
-    const onChangeFrom = (v) => onChange(`${v || 0}-${to}`);
-    const onChangeTo = (v) => onChange(`${from}-${v || 0}`);
+    const onChangeFrom = (v) => onChange(`${v || 1}-${to}`);
+    const onChangeTo = (v) => onChange(`${from}-${v || 1}`);
 
     return (
         <React.Fragment>

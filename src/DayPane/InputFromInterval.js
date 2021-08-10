@@ -3,13 +3,13 @@ import { InputNumber } from 'antd';
 
 function InputFromInterval(props) {
     const { disabled, value, onChange } = props;
-    let from = 0;
-    let interval = 0;
+    let from = 1;
+    let interval = 1;
     if (!disabled) {
         [from, interval] = value.split('/').map((v) => parseInt(v, 10));
     }
-    const onChangeFrom = (v) => onChange(`${v || 0}/${interval}`);
-    const onChangeInterval = (v) => onChange(`${from}/${v || 0}`);
+    const onChangeFrom = (v) => onChange(`${v || 1}/${interval}`);
+    const onChangeInterval = (v) => onChange(`${from}/${v || 1}`);
 
     return (
         <React.Fragment>

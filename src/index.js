@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { Tabs, Button } from 'antd';
-import SecondPane from './SecondPane';
-import MinutePane from './MinutePane';
-import HourPane from './HourPane';
+import { Button, Tabs } from 'antd';
+import React, { useCallback, useEffect, useState } from 'react';
+import { dayRegex, hourRegex, minuteRegex, monthRegex, secondRegex, weekRegex, yearRegex } from './cron-regex';
 import DayPane from './DayPane';
+import HourPane from './HourPane';
+import MinutePane from './MinutePane';
 import MonthPane from './MonthPane';
+import SecondPane from './SecondPane';
 import WeekPane from './WeekPane';
 import YearPane from './YearPane';
-import { secondRegex, minuteRegex, hourRegex, dayRegex, monthRegex, weekRegex, yearRegex } from './cron-regex';
 
 const { TabPane } = Tabs;
 const tabPaneStyle = { paddingLeft: 10, paddingBottom: 8, marginTop: -10 };
 const getTabTitle = (text) => <div style={{ width: 50, textAlign: 'center' }}>{text}</div>;
 
 function Cron(props) {
-    const { style, footerStyle, value, onOk } = props;
+    const { style, footerStyle, footerRenderer, value, onOk } = props;
     const [currentTab, setCurrentTab] = useState('1');
     const [second, setSecond] = useState('*');
     const [minute, setMinute] = useState('*');
@@ -55,6 +55,19 @@ function Cron(props) {
         }
     };
 
+    const onReset = () => {
+        setSecond('*');
+        setMinute('*');
+        setHour('*');
+        setDay('*');
+        setMonth('*');
+        setWeek('?');
+        setYear('*');
+        if (onOk) {
+            onOk(['*', '*', '*', '*', '*', '?', '*'].join(' '));
+        }
+    };
+
     const onGenerate = () => {
         if (onOk) {
             onOk([second, minute, hour, day, month, week, year].join(' '));
@@ -75,13 +88,32 @@ function Cron(props) {
         }
     };
 
+    useEffect(onParse, [value]);
+
+    const footerRendererWrapper = useCallback(() => {
+        if (footerRenderer && typeof footerRenderer === 'function') {
+            return footerRenderer(onReset, onGenerate);
+        }
+        return (
+            <React.Fragment>
+                <Button style={{ marginRight: 10 }} onClick={onReset}>
+                    重置
+                </Button>
+                <Button type="primary" onClick={onGenerate}>
+                    生成
+                </Button>
+            </React.Fragment>
+        );
+    }, [footerRenderer, onReset, onGenerate]);
+
     return (
         <div
             style={{
                 backgroundColor: '#fff',
-                borderRadius: '4px',
+                borderRadius: '2px',
                 outline: 'none',
                 boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+                width: 600,
                 ...style,
             }}
         >
@@ -109,12 +141,7 @@ function Cron(props) {
                 </TabPane>
             </Tabs>
             <div style={{ borderTop: '1px solid #e8e8e8', padding: 10, textAlign: 'right', ...footerStyle }}>
-                <Button style={{ marginRight: 10 }} onClick={onParse}>
-                    解析到UI
-                </Button>
-                <Button type="primary" onClick={onGenerate}>
-                    生成
-                </Button>
+                {footerRendererWrapper()}
             </div>
         </div>
     );

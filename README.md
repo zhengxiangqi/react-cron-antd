@@ -2,7 +2,7 @@
     <h1>ReactCron</h1>
     <div>基于React及Antd的cron时间表达式生成器</div>
     <br/>
-    <img width=700 src="./snapshot.png" alt="效果图" />
+    <img width=613 src="./snapshot.png" alt="效果图" />
 </div>
 
 
@@ -13,13 +13,21 @@
 - 🎉 可结合此组件与Antd的下拉及输入组件封装成下拉输入框
 
 
+### 安装
+```bash
+npm install react-cron-antd
+# 或
+yarn add react-cron-antd
+```
+
+
 ### 使用
 ```jsx
 import React from 'react';
 import Cron from 'react-cron-antd';
 
 function Page() {
-    return <Cron value="* * * * * ? *" onOk={(value) => {console.log('cron:', value);}} />;
+    return <Cron value="* * * * * ? *" onOk={(value) => console.log('cron:', value)} />;
 }
 
 export default Page;
@@ -41,7 +49,7 @@ function CronInput(props) {
         <Dropdown
             trigger={['click']}
             placement="bottomLeft"
-            overlay={<Cron onOk={onChange} value={value} />}
+            overlay={<Cron value={value} onOk={onChange} />}
         >
             <Input.Search value={value} />
         </Dropdown>

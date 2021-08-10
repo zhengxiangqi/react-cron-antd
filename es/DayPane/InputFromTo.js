@@ -7,8 +7,8 @@ function InputFromTo(props) {
   var disabled = props.disabled,
       value = props.value,
       onChange = props.onChange;
-  var from = 0;
-  var to = 0;
+  var from = 1;
+  var to = 1;
 
   if (!disabled) {
     var _value$split$map = value.split('-').map(function (v) {
@@ -22,11 +22,11 @@ function InputFromTo(props) {
   }
 
   var onChangeFrom = function onChangeFrom(v) {
-    return onChange("".concat(v || 0, "-").concat(to));
+    return onChange("".concat(v || 1, "-").concat(to));
   };
 
   var onChangeTo = function onChangeTo(v) {
-    return onChange("".concat(from, "-").concat(v || 0));
+    return onChange("".concat(from, "-").concat(v || 1));
   };
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, "\u4ECE\xA0", /*#__PURE__*/React.createElement(_InputNumber, {
